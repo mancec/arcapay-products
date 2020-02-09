@@ -13,7 +13,7 @@
     </ul>
 </nav>
 <div class="products form large-9 medium-8 columns content">
-    <?= $this->Form->create('Product', array('url' => array('action' => 'add'), 'enctype' => 'multipart/form-data')) ?>
+    <?= $this->Form->create($product, array('url' => array('action' => 'add'), 'enctype' => 'multipart/form-data')) ?>
     <fieldset>
         <legend><?= __('Add Product') ?></legend>
         <div style="width: 40%">
@@ -21,7 +21,7 @@
             echo $this->Form->control('name');
             echo $this->Form->control('price' , ['type' => 'number', 'style' => 'width: 20%']);
             echo $this->Form->control('description', ['type' => 'textarea']);
-            echo $this->Form->file('photo', array('type' => 'file'));
+            echo $this->Form->file('photo');
         ?>
         </div>
     </fieldset>

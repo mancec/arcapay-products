@@ -134,11 +134,6 @@ class ProductsController extends AppController
 
 
             }
-          //  dd($product);
-            //$photo = 12;
-            //dd($this->request->getData());
-            //$product = $this->Products->patchEntity($product, $this->request->getData(), ['photo' => $photo]);
-           // dd($product);
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
 
@@ -172,11 +167,9 @@ class ProductsController extends AppController
 
     public function convert()
     {
-       // $products = TableRegistry::getTableLocator()->get('Products')->find()->all();
-        // debug($products);
+
         $products = $this->Products->find()->all();
-        $productlist =array();
-        $i = 0;
+        $productlist = array();
         foreach ($products as $product) {
             $prod['id'] = $product['id'];
             $prod['name'] = $product['name'];
@@ -184,21 +177,19 @@ class ProductsController extends AppController
             $prod['description'] = $product['description'];
             $prod['photo'] = $product['photo'];
 
-            $productlist['Products']['product'][$i] = $prod;
-            $i++;
-
+            $productlist['Products']['product'][] = $prod;
         }
-        //debug($productlist);
-        $xmlObject = Xml::fromArray($productlist, ['format' => 'tags']);
-        $xmlString = $xmlObject->asXML();
-       // $xmlString->
-        //debug($xmlString);
-        // $xmlObject = Xml::fromArray($xmlArray);
-        //$xmlString = $xmlObject->asXML();
-        // dd($xmlString);
-        // $xmlArray =  Product::->find('all');
-        // dd($xmlArray);
-        // $xml1 = Xml::fromArray($query);
+        try {
+        $xmlObject = Xml::fromArray($productlist,
+            ['pretty' => 'true']);
+        } catch (\Cake\Utility\Exception\XmlException $e) {
+            throw new InternalErrorException();
+        }
+        $xmlObject->asXML('webroot/files/products.xml');
+
+        return $this->redirect(
+            ['controller' => 'Products', 'action' => 'index']
+        );
     }
 
     public function readJson()

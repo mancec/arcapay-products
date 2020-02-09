@@ -41,8 +41,16 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+
             </li>
         </ul>
+
+        <ul class="title-area large-3 medium-4 columns">
+            <li class="name">
+                <h1><?= $this->Html->link(__('Product List'), ['controller' => 'ProductRatings','action' => 'index']) ?></h1>
+            </li>
+        </ul>
+
         <div class="top-bar-section">
             <ul class="right">
                 <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>

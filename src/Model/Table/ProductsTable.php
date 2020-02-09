@@ -41,7 +41,9 @@ class ProductsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasMany('ProductRatings', [
-            'foreignKey' => 'product_id'
+            'foreignKey' => 'product_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
@@ -58,13 +60,20 @@ class ProductsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->requirePresence('name')
             ->scalar('name')
             ->maxLength('name', 255)
-            ->allowEmptyString('name');
+            ->notEmptyString('name', 'Please fill this field')
+            ->add('name',[
+                'length' => [
+                    'rule' => ['minLength', 2],
+                    'message' => 'Name must be at least 2 characters long'
+                ]
+            ]);
 
         $validator
             ->numeric('price')
-            ->allowEmptyString('price');
+            ->notEmptyString('price');
 
         $validator
             ->numeric('width')
@@ -75,13 +84,21 @@ class ProductsTable extends Table
 
         $validator
             ->scalar('description')
-            ->allowEmptyString('description');
+            ->notEmptyString('description')
+            ->add('description',[
+                'length' => [
+                    'rule' => ['minLength', 10],
+                    'message' => 'Description must be at least 10 characters long'
+                ]
+            ]);
 
         $validator
             ->scalar('photo')
             ->maxLength('photo', 255)
-            ->allowEmptyString('photo');
+            ->notEmptyFile('photo');
 
         return $validator;
     }
+
+
 }
