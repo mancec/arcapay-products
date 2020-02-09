@@ -17,20 +17,16 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('product_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('score') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($productRatings as $productRating): ?>
             <tr>
-                <td><?= $this->Number->format($productRating->id) ?></td>
                 <td><?= $productRating->has('product') ? $this->Html->link($productRating->product->name, ['controller' => 'Products', 'action' => 'view', $productRating->product->id]) : '' ?></td>
                 <td><?= $this->Number->format($productRating->score) ?></td>
-                <td><?= h($productRating->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $productRating->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productRating->id]) ?>

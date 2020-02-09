@@ -12,6 +12,13 @@ use App\Controller\AppController;
  */
 class ProductRatingsController extends AppController
 {
+
+    public $paginate = [
+        'limit' => 2,
+        'order' => [
+            'Articles.title' => 'asc'
+        ]
+    ];
     /**
      * Index method
      *

@@ -20,6 +20,14 @@ use Cake\Controller\Component\RequestHandlerComponent;
  */
 class ProductsController extends AppController
 {
+
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Articles.title' => 'asc'
+        ]
+    ];
+
     /**
      * Index method
      *
@@ -45,6 +53,20 @@ class ProductsController extends AppController
         $product = $this->Products->get($id, [
             'contain' => ['ProductRatings']
         ]);
+        // find products rating
+        $sum = 0;
+        $count = 0;
+        foreach ($product['product_ratings'] as $score)
+        {
+            $sum = $sum + $score->score;
+            $count++;
+        }
+        if($count > 0) {
+            $rating = $sum / $count;
+        }
+        else{
+            $rating = 0;
+        }
 
         $nameArr = explode(' ',trim($product['name']));
         $descriptionArr = explode(' ',trim($product['description']));
@@ -57,9 +79,10 @@ class ProductsController extends AppController
         );
 
         $related = $this->paginate($this->Products->find('all', array(
-            'conditions' => $conditions )));
+            'conditions' => $conditions )),['limit' => '4']);
         $this->set('product', $product);
         $this->set('related', $related);
+        $this->set('rating', $rating);
     }
 
     /**
@@ -156,6 +179,7 @@ class ProductsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $product = $this->Products->get($id);
         if ($this->Products->delete($product)) {
+            unlink(WWW_ROOT .'/img/'.$product['photo']);
             $this->Flash->success(__('The product has been deleted.'));
         } else {
             $this->Flash->error(__('The product could not be deleted. Please, try again.'));

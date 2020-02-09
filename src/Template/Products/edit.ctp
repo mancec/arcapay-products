@@ -6,7 +6,7 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('Products Menu') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $product->id],
@@ -24,7 +24,7 @@
         <legend><?= __('Edit Product') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('price');
+            echo $this->Form->control('price', ['type' => 'number','min' => '0', 'style' => 'width: 20%']);
             echo $this->Form->control('description');
             echo $this->Form->file('photo');
         ?>

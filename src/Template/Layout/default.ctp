@@ -14,7 +14,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Product page';
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
 
@@ -38,23 +38,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
 
+        <ul class="title-area large-2 medium-4 columns">
+            <li class="name">
+                <h1><?= $this->Html->link(__('Product List'), ['controller' => 'Products','action' => 'index']) ?></h1>
             </li>
         </ul>
-
-        <ul class="title-area large-3 medium-4 columns">
+        <ul class="title-area large-2 medium-4 columns">
             <li class="name">
-                <h1><?= $this->Html->link(__('Product List'), ['controller' => 'ProductRatings','action' => 'index']) ?></h1>
+                <h1><?= $this->Html->link(__('Tasks'), ['controller' => 'Pages','action' => 'display', 'home']) ?></h1>
             </li>
         </ul>
 
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li><?= $this->Html->link(__('Export to XML'), ['controller' => 'Products', 'action' => 'convert']) ?></li>
+                <li><?= $this->Html->link('Read Json', ['controller' => 'products', 'action' => 'readJson']) ?></li>
             </ul>
         </div>
     </nav>

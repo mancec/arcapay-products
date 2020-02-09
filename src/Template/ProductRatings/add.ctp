@@ -18,7 +18,7 @@
         <legend><?= __('Add Product Rating') ?></legend>
         <?php
             echo $this->Form->control('product_id', ['options' => $products]);
-            echo $this->Form->control('score');
+            echo $this->Form->control('score', ['type' => 'number','min' => '0', 'style' => 'width: 20%']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
