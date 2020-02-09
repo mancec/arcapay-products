@@ -1,5 +1,6 @@
 # arcapay-products
- 
+### 1)Created CRUD 
+You can add images and if on update no image is uploaded the old one will be kept
 ### 2)Export to Xml
 Export to Xml is located at ProductsController function convert and the File is saved in webroot files directory 
 ### 3)Read Json
