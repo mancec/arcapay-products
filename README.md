@@ -1,8 +1,7 @@
 # arcapay-products
  
 ### 2)Export to Xml
-Export to Xml is located at ProductsController convert
-File is in webroot files directory 
+Export to Xml is located at ProductsController function convert and the File is saved in webroot files directory 
 ### 3)Read Json
 Read Json is located at ProductsController ReadJson
 ### 4)Products relation
