@@ -109,6 +109,10 @@ class ProductsController extends AppController
                     $product['width'] = $width;
                     $product['height'] = $height;
                 }
+                else
+                {
+                    $this->Flash->error(__('Wrong file extension.'));
+                }
                 if ($this->Products->save($product)) {
                     $this->Flash->success(__('The product has been saved.'));
 
