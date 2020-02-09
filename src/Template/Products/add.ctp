@@ -16,12 +16,14 @@
     <?= $this->Form->create('Product', array('url' => array('action' => 'add'), 'enctype' => 'multipart/form-data')) ?>
     <fieldset>
         <legend><?= __('Add Product') ?></legend>
+        <div style="width: 40%">
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('price');
-            echo $this->Form->control('description');
-            echo $this->Form->input('photo', array('type' => 'file'));
+            echo $this->Form->control('price' , ['type' => 'number', 'style' => 'width: 20%']);
+            echo $this->Form->control('description', ['type' => 'textarea']);
+            echo $this->Form->file('photo', array('type' => 'file'));
         ?>
+        </div>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

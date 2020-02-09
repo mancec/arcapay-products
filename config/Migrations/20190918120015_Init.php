@@ -51,6 +51,16 @@ class Init extends AbstractMigration
                 'limit' => 255,
                 'null' => true,
             ])
+            ->addColumn('width', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('height', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
             ->addColumn('modified', 'datetime', [
                 'default' => null,
                 'limit' => null,

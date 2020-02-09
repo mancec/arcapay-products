@@ -25,7 +25,7 @@
         <tr>
             <th scope="row"><?= __('Photo') ?></th>
             <td><?= h($product->photo) ?></td>
-            <?php echo $this->Html->image($product->photo, array('width' => '200px','alt'=>'aswq')); ?>
+            <?php echo $this->Html->image($product->photo, array('width' => '200px','alt'=>'image')); ?>
         </tr>
         <tr>
             <th scope="row"><?= __('Price') ?></th>
@@ -36,6 +36,25 @@
         <h4><?= __('Description') ?></h4>
         <?= $this->Text->autoParagraph(h($product->description)); ?>
     </div>
+
+    <table class="vertical-table">
+    <?php foreach ($related as $relate): ?>
+        <tr>
+            <td><?= $this->Number->format($relate->id) ?></td>
+            <td><?= h($relate->name) ?></td>
+            <td><?= $this->Number->format($relate->price) ?></td>
+            <td><?= h($relate->photo) ?></td>
+            <td><?= h($relate->modified) ?></td>
+            <td><?= h($relate->created) ?></td>
+            <td class="actions">
+                <?= $this->Html->link(__('View'), ['action' => 'view', $relate->id]) ?>
+                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $relate->id]) ?>
+                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $relate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $product->id)]) ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+
     <div class="related">
         <h4><?= __('Related Product Ratings') ?></h4>
         <?php if (!empty($product->product_ratings)): ?>

@@ -19,14 +19,14 @@
     </ul>
 </nav>
 <div class="products form large-9 medium-8 columns content">
-    <?= $this->Form->create($product) ?>
+    <?= $this->Form->create($product, array('url' => array('action' => 'edit'), 'enctype' => 'multipart/form-data')) ?>
     <fieldset>
         <legend><?= __('Edit Product') ?></legend>
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('price');
             echo $this->Form->control('description');
-            echo $this->Form->control('photo');
+            echo $this->Form->file('photo');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

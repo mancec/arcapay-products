@@ -67,6 +67,13 @@ class ProductsTable extends Table
             ->allowEmptyString('price');
 
         $validator
+            ->numeric('width')
+            ->allowEmptyString('width');
+        $validator
+            ->numeric('height')
+            ->allowEmptyString('height');
+
+        $validator
             ->scalar('description')
             ->allowEmptyString('description');
 

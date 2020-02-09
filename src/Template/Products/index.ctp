@@ -10,7 +10,7 @@
         <li><?= $this->Html->link(__('New Product'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Product Ratings'), ['controller' => 'ProductRatings', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Product Rating'), ['controller' => 'ProductRatings', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('export to XML'), ['action' => 'convert']) ?></li>
+        <li><?= $this->Html->link(__('export to XML'), ['controller' => 'Products', 'action' => 'convert']) ?></li>
     </ul>
 </nav>
 <div class="products index large-9 medium-8 columns content">
@@ -18,7 +18,6 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('photo') ?></th>
@@ -30,7 +29,6 @@
         <tbody>
             <?php foreach ($products as $product): ?>
             <tr>
-                <td><?= $this->Number->format($product->id) ?></td>
                 <td><?= h($product->name) ?></td>
                 <td><?= $this->Number->format($product->price) ?></td>
                 <td><?= h($product->photo) ?></td>

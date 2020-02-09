@@ -30,6 +30,8 @@ class Product extends Entity
         'price' => true,
         'description' => true,
         'photo' => true,
+        'width' => true,
+        'height' => true,
         'modified' => true,
         'created' => true
     ];
