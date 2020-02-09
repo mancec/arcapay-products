@@ -16,23 +16,13 @@
     </ul>
 </nav>
 <div class="productRatings view large-9 medium-8 columns content">
-    <h3><?= h($productRating->id) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Product') ?></th>
             <td><?= $productRating->has('product') ? $this->Html->link($productRating->product->name, ['controller' => 'Products', 'action' => 'view', $productRating->product->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($productRating->id) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Score') ?></th>
             <td><?= $this->Number->format($productRating->score) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($productRating->created) ?></td>
-        </tr>
     </table>
 </div>

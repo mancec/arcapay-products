@@ -95,7 +95,7 @@ class ProductsTable extends Table
         $validator
             ->scalar('photo')
             ->maxLength('photo', 255)
-            ->notEmptyFile('photo');
+            ->allowEmptyFile('photo', null, 'edit');
 
         return $validator;
     }

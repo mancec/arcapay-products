@@ -59,6 +59,11 @@ class ProductRatingsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+        ->integer('product_id')
+        ->requirePresence('product_id', 'create')
+        ->notEmptyString('product_id');
+
+        $validator
             ->integer('score')
             ->requirePresence('score', 'create')
             ->notEmptyString('score');

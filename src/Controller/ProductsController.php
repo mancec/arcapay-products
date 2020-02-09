@@ -193,23 +193,27 @@ class ProductsController extends AppController
     {
 
         $products = $this->Products->find()->all();
-        $productlist = array();
-        foreach ($products as $product) {
-            $prod['id'] = $product['id'];
-            $prod['name'] = $product['name'];
-            $prod['price'] = $product['price'];
-            $prod['description'] = $product['description'];
-            $prod['photo'] = $product['photo'];
+        if(!empty($product)) {
+            $productlist = array();
+            foreach ($products as $product) {
+                $prod['id'] = $product['id'];
+                $prod['name'] = $product['name'];
+                $prod['price'] = $product['price'];
+                $prod['description'] = $product['description'];
+                $prod['photo'] = $product['photo'];
 
-            $productlist['Products']['product'][] = $prod;
+                $productlist['Products']['product'][] = $prod;
+            }
+            try {
+                $xmlObject = Xml::fromArray($productlist,
+                    ['pretty' => 'true']);
+            } catch (\Cake\Utility\Exception\XmlException $e) {
+                throw new InternalErrorException();
+            }
+            $xmlObject->asXML('webroot/files/products.xml');
         }
-        try {
-        $xmlObject = Xml::fromArray($productlist,
-            ['pretty' => 'true']);
-        } catch (\Cake\Utility\Exception\XmlException $e) {
-            throw new InternalErrorException();
-        }
-        $xmlObject->asXML('webroot/files/products.xml');
+        else
+            $this->Flash->error(__('There are no products to export'));
 
         return $this->redirect(
             ['controller' => 'Products', 'action' => 'index']
